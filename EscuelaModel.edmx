@@ -1,0 +1,1750 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EscuelaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admins">
+          <Key>
+            <PropertyRef Name="ID_Admin" />
+          </Key>
+          <Property Name="ID_Admin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Apellido" Type="varchar" MaxLength="100" />
+          <Property Name="Usuario_ID" Type="int" />
+          <Property Name="Rol_ID" Type="int" />
+          <Property Name="Fecha_Nacimiento" Type="date" />
+        </EntityType>
+        <EntityType Name="Alumnos">
+          <Key>
+            <PropertyRef Name="ID_Alumno" />
+          </Key>
+          <Property Name="ID_Alumno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Apellido" Type="varchar" MaxLength="100" />
+          <Property Name="Fecha_Nacimiento" Type="date" />
+          <Property Name="Matricula" Type="varchar" MaxLength="10" />
+          <Property Name="Usuario_ID" Type="int" />
+          <Property Name="Rol_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Alumnos_Grupos">
+          <Key>
+            <PropertyRef Name="ID_Alumnos_Grupos" />
+          </Key>
+          <Property Name="ID_Alumnos_Grupos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Alumno_ID" Type="int" />
+          <Property Name="Grupo_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Calificaciones">
+          <Key>
+            <PropertyRef Name="ID_Calificacion" />
+          </Key>
+          <Property Name="ID_Calificacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Alumno_ID" Type="int" />
+          <Property Name="Materia_ID" Type="int" />
+          <Property Name="Calificacion" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="Semestre" Type="int" />
+          <Property Name="Parcial" Type="int" />
+        </EntityType>
+        <EntityType Name="Grupos">
+          <Key>
+            <PropertyRef Name="ID_Grupo" />
+          </Key>
+          <Property Name="ID_Grupo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Profesor_ID" Type="int" />
+          <Property Name="Materia_ID" Type="int" />
+          <Property Name="Horario_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Horarios">
+          <Key>
+            <PropertyRef Name="ID_Horario" />
+          </Key>
+          <Property Name="ID_Horario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Horario" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Materias">
+          <Key>
+            <PropertyRef Name="ID_Materia" />
+          </Key>
+          <Property Name="ID_Materia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Profesores">
+          <Key>
+            <PropertyRef Name="ID_Profesor" />
+          </Key>
+          <Property Name="ID_Profesor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Apellido" Type="varchar" MaxLength="100" />
+          <Property Name="Usuario_ID" Type="int" />
+          <Property Name="Fecha_Nacimiento" Type="date" />
+          <Property Name="Rol_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Rectores">
+          <Key>
+            <PropertyRef Name="ID_Rector" />
+          </Key>
+          <Property Name="ID_Rector" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" />
+          <Property Name="Usuario_ID" Type="int" />
+          <Property Name="Rol_ID" Type="int" />
+          <Property Name="Fecha_Nacimiento" Type="date" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="ID_Rol" />
+          </Key>
+          <Property Name="ID_Rol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="ID_Usuario" />
+          </Key>
+          <Property Name="ID_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_Usuario" Type="varchar" MaxLength="100" />
+          <Property Name="Contraseña" Type="varchar" MaxLength="100" />
+          <Property Name="Rol_ID" Type="int" />
+          <Property Name="disponibilidad" Type="bit" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Escuela.dbo.mostrarUsuarios' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="mostrarUsuarios">
+          <Key>
+            <PropertyRef Name="ID_Usuario" />
+          </Key>
+          <Property Name="ID_Usuario" Type="int" Nullable="false" />
+          <Property Name="Nombre_Usuario" Type="varchar" MaxLength="100" />
+          <Property Name="Rol" Type="varchar" MaxLength="50" />
+          <Property Name="disponibilidad" Type="bit" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'Escuela.dbo.V_Login' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="V_Login">
+          <Property Name="Nombre_Usuario" Type="varchar" MaxLength="100" />
+          <Property Name="contraseña" Type="varchar" MaxLength="100" />
+        </EntityType>-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Escuela.dbo.view_AlumnosGrupos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="view_AlumnosGrupos">
+          <Key>
+            <PropertyRef Name="#" />
+            <PropertyRef Name="ID_Alumno" />
+            <PropertyRef Name="ID_Profesor" />
+          </Key>
+          <Property Name="#" Type="int" Nullable="false" />
+          <Property Name="Grupo" Type="varchar" MaxLength="100" />
+          <Property Name="ID_Alumno" Type="int" Nullable="false" />
+          <Property Name="Nombre_Alumno" Type="varchar" MaxLength="201" />
+          <Property Name="ID_Profesor" Type="int" Nullable="false" />
+          <Property Name="Nombre_Profesor" Type="varchar" MaxLength="201" />
+          <Property Name="Materia" Type="varchar" MaxLength="100" />
+          <Property Name="Horario" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Admins__Rol_ID__2BFE89A6">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Admins" Type="Self.Admins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="ID_Usuario" />
+            </Principal>
+            <Dependent Role="Admins">
+              <PropertyRef Name="Usuario_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Admins__Rol_ID__2CF2ADDF">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Admins" Type="Self.Admins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_Rol" />
+            </Principal>
+            <Dependent Role="Admins">
+              <PropertyRef Name="Rol_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Alumnos__Rol_ID__31B762FC">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_Rol" />
+            </Principal>
+            <Dependent Role="Alumnos">
+              <PropertyRef Name="Rol_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Alumnos__Usuario__4E88ABD4">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="ID_Usuario" />
+            </Principal>
+            <Dependent Role="Alumnos">
+              <PropertyRef Name="Usuario_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Alumnos_G__Alumn__1CBC4616">
+          <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="0..1" />
+          <End Role="Alumnos_Grupos" Type="Self.Alumnos_Grupos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alumnos">
+              <PropertyRef Name="ID_Alumno" />
+            </Principal>
+            <Dependent Role="Alumnos_Grupos">
+              <PropertyRef Name="Alumno_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Alumnos_G__Grupo__1DB06A4F">
+          <End Role="Grupos" Type="Self.Grupos" Multiplicity="0..1" />
+          <End Role="Alumnos_Grupos" Type="Self.Alumnos_Grupos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupos">
+              <PropertyRef Name="ID_Grupo" />
+            </Principal>
+            <Dependent Role="Alumnos_Grupos">
+              <PropertyRef Name="Grupo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Calificac__Alumn__7C4F7684">
+          <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="0..1" />
+          <End Role="Calificaciones" Type="Self.Calificaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alumnos">
+              <PropertyRef Name="ID_Alumno" />
+            </Principal>
+            <Dependent Role="Calificaciones">
+              <PropertyRef Name="Alumno_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Calificac__Mater__7D439ABD">
+          <End Role="Materias" Type="Self.Materias" Multiplicity="0..1" />
+          <End Role="Calificaciones" Type="Self.Calificaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materias">
+              <PropertyRef Name="ID_Materia" />
+            </Principal>
+            <Dependent Role="Calificaciones">
+              <PropertyRef Name="Materia_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Grupos__Horario___17F790F9">
+          <End Role="Horarios" Type="Self.Horarios" Multiplicity="0..1" />
+          <End Role="Grupos" Type="Self.Grupos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Horarios">
+              <PropertyRef Name="ID_Horario" />
+            </Principal>
+            <Dependent Role="Grupos">
+              <PropertyRef Name="Horario_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Grupos__Materia___18EBB532">
+          <End Role="Materias" Type="Self.Materias" Multiplicity="0..1" />
+          <End Role="Grupos" Type="Self.Grupos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materias">
+              <PropertyRef Name="ID_Materia" />
+            </Principal>
+            <Dependent Role="Grupos">
+              <PropertyRef Name="Materia_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Grupos__Profesor__19DFD96B">
+          <End Role="Profesores" Type="Self.Profesores" Multiplicity="0..1" />
+          <End Role="Grupos" Type="Self.Grupos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesores">
+              <PropertyRef Name="ID_Profesor" />
+            </Principal>
+            <Dependent Role="Grupos">
+              <PropertyRef Name="Profesor_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Profesore__Rol_I__32AB8735">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Profesores" Type="Self.Profesores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_Rol" />
+            </Principal>
+            <Dependent Role="Profesores">
+              <PropertyRef Name="Rol_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Profesore__Usuar__571DF1D5">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Profesores" Type="Self.Profesores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="ID_Usuario" />
+            </Principal>
+            <Dependent Role="Profesores">
+              <PropertyRef Name="Usuario_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rectores__Rol_ID__30C33EC3">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Rectores" Type="Self.Rectores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_Rol" />
+            </Principal>
+            <Dependent Role="Rectores">
+              <PropertyRef Name="Rol_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rectores__Usuari__2FCF1A8A">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Rectores" Type="Self.Rectores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="ID_Usuario" />
+            </Principal>
+            <Dependent Role="Rectores">
+              <PropertyRef Name="Usuario_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuarios__Rol_ID__4BAC3F29">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_Rol" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="Rol_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="mostrarGrupos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_Admin_sel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Admin" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Admins_del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Admin" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Admins_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Admin" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Apellido" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_Alumno_sel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Alumno" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Alumno_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Alumno" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Apellido" Type="varchar" Mode="In" />
+          <Parameter Name="Fecha_Nacimiento" Type="date" Mode="In" />
+          <Parameter Name="Matricula" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_AlumnoGrupo_sel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_AlumnosGrupo" Type="int" Mode="In" />
+          <Parameter Name="Alumno_ID" Type="int" Mode="In" />
+          <Parameter Name="Grupo_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_AlumnosGrupo_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_AlumnosGrupo" Type="int" Mode="In" />
+          <Parameter Name="Alumno_ID" Type="int" Mode="In" />
+          <Parameter Name="Grupo_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_AlumnosGrupos_del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_AlumnosGrupo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Alumo_del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Alumno" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Califiacion_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Califiacion" Type="int" Mode="In" />
+          <Parameter Name="Materia_ID" Type="int" Mode="In" />
+          <Parameter Name="Alumno_ID" Type="int" Mode="In" />
+          <Parameter Name="Calificacion" Type="decimal" Mode="In" />
+          <Parameter Name="Semestre" Type="int" Mode="In" />
+          <Parameter Name="Parcial" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Calificacion_del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Calificacion" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Calificacion_sel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Calificacion" Type="int" Mode="In" />
+          <Parameter Name="Alumno_ID" Type="int" Mode="In" />
+          <Parameter Name="Materia_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Grupo_del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Grupo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Grupo_sel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Grupo" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Grupo_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Grupo" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Horario_ID" Type="int" Mode="In" />
+          <Parameter Name="Materia_ID" Type="int" Mode="In" />
+          <Parameter Name="Profesor_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Horario_del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Horario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Horario_sel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Horario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Horario_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Horario" Type="int" Mode="In" />
+          <Parameter Name="Horario" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_InsertarAdmins" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Apellido" Type="varchar" Mode="In" />
+          <Parameter Name="Fecha_Nacimiento" Type="date" Mode="In" />
+          <Parameter Name="Rol_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_InsertarAlumGrupo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Alumno_ID" Type="int" Mode="In" />
+          <Parameter Name="Grupo_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_InsertarAlumno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Apellido" Type="varchar" Mode="In" />
+          <Parameter Name="Fecha_Nacimiento" Type="date" Mode="In" />
+          <Parameter Name="Rol_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_InsertarCalificacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ALumno_ID" Type="int" Mode="In" />
+          <Parameter Name="Materia_ID" Type="int" Mode="In" />
+          <Parameter Name="Calificacion" Type="decimal" Mode="In" />
+          <Parameter Name="Semestre" Type="int" Mode="In" />
+          <Parameter Name="Parcial" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_InsertarGrupo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Profesor_ID" Type="int" Mode="In" />
+          <Parameter Name="Materia_ID" Type="int" Mode="In" />
+          <Parameter Name="Horario_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_InsertarHorario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Horario" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_InsertarMateria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_InsertarProfe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Apellido" Type="varchar" Mode="In" />
+          <Parameter Name="Usuario_ID" Type="int" Mode="In" />
+          <Parameter Name="Fecha_Nacimiento" Type="date" Mode="In" />
+          <Parameter Name="Rol_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre_Usuario" Type="varchar" Mode="In" />
+          <Parameter Name="Contraseña" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Materia_del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Materia" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Materia_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Materia" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Materias_sel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Materia" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_MostrarAlumnosGrupos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_mostrarUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_Profe_del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Profesor" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Profe_sel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Profesor" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Profe_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Profesor" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Apellido" Type="varchar" Mode="In" />
+          <Parameter Name="Usuario_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Roles_sel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_Usuario_del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Usuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Usuario_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre_usuario" Type="varchar" Mode="In" />
+          <Parameter Name="Contraseña" Type="varchar" Mode="In" />
+          <Parameter Name="Rol_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Usuario_sel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Usuario" Type="int" Mode="In" />
+          <Parameter Name="Nombre_Usuario" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Usuario_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Usuario" Type="int" Mode="In" />
+          <Parameter Name="Nombre_Usuario" Type="varchar" Mode="In" />
+          <Parameter Name="Contraseña" Type="varchar" Mode="In" />
+          <Parameter Name="Rol_ID" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="EscuelaModelStoreContainer">
+          <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Alumnos" EntityType="Self.Alumnos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Alumnos_Grupos" EntityType="Self.Alumnos_Grupos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Calificaciones" EntityType="Self.Calificaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grupos" EntityType="Self.Grupos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Horarios" EntityType="Self.Horarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Materias" EntityType="Self.Materias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Profesores" EntityType="Self.Profesores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rectores" EntityType="Self.Rectores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mostrarUsuarios" EntityType="Self.mostrarUsuarios" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [mostrarUsuarios].[ID_Usuario] AS [ID_Usuario], 
+    [mostrarUsuarios].[Nombre_Usuario] AS [Nombre_Usuario], 
+    [mostrarUsuarios].[Rol] AS [Rol], 
+    [mostrarUsuarios].[disponibilidad] AS [disponibilidad]
+    FROM [dbo].[mostrarUsuarios] AS [mostrarUsuarios]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_AlumnosGrupos" EntityType="Self.view_AlumnosGrupos" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_AlumnosGrupos].[#] AS [#], 
+    [view_AlumnosGrupos].[Grupo] AS [Grupo], 
+    [view_AlumnosGrupos].[ID_Alumno] AS [ID_Alumno], 
+    [view_AlumnosGrupos].[Nombre_Alumno] AS [Nombre_Alumno], 
+    [view_AlumnosGrupos].[ID_Profesor] AS [ID_Profesor], 
+    [view_AlumnosGrupos].[Nombre_Profesor] AS [Nombre_Profesor], 
+    [view_AlumnosGrupos].[Materia] AS [Materia], 
+    [view_AlumnosGrupos].[Horario] AS [Horario]
+    FROM [dbo].[view_AlumnosGrupos] AS [view_AlumnosGrupos]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Admins__Rol_ID__2BFE89A6" Association="Self.FK__Admins__Rol_ID__2BFE89A6">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Admins" EntitySet="Admins" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Admins__Rol_ID__2CF2ADDF" Association="Self.FK__Admins__Rol_ID__2CF2ADDF">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Admins" EntitySet="Admins" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Alumnos__Rol_ID__31B762FC" Association="Self.FK__Alumnos__Rol_ID__31B762FC">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Alumnos" EntitySet="Alumnos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Alumnos__Usuario__4E88ABD4" Association="Self.FK__Alumnos__Usuario__4E88ABD4">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Alumnos" EntitySet="Alumnos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Alumnos_G__Alumn__1CBC4616" Association="Self.FK__Alumnos_G__Alumn__1CBC4616">
+            <End Role="Alumnos" EntitySet="Alumnos" />
+            <End Role="Alumnos_Grupos" EntitySet="Alumnos_Grupos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Alumnos_G__Grupo__1DB06A4F" Association="Self.FK__Alumnos_G__Grupo__1DB06A4F">
+            <End Role="Grupos" EntitySet="Grupos" />
+            <End Role="Alumnos_Grupos" EntitySet="Alumnos_Grupos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Calificac__Alumn__7C4F7684" Association="Self.FK__Calificac__Alumn__7C4F7684">
+            <End Role="Alumnos" EntitySet="Alumnos" />
+            <End Role="Calificaciones" EntitySet="Calificaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Calificac__Mater__7D439ABD" Association="Self.FK__Calificac__Mater__7D439ABD">
+            <End Role="Materias" EntitySet="Materias" />
+            <End Role="Calificaciones" EntitySet="Calificaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Grupos__Horario___17F790F9" Association="Self.FK__Grupos__Horario___17F790F9">
+            <End Role="Horarios" EntitySet="Horarios" />
+            <End Role="Grupos" EntitySet="Grupos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Grupos__Materia___18EBB532" Association="Self.FK__Grupos__Materia___18EBB532">
+            <End Role="Materias" EntitySet="Materias" />
+            <End Role="Grupos" EntitySet="Grupos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Grupos__Profesor__19DFD96B" Association="Self.FK__Grupos__Profesor__19DFD96B">
+            <End Role="Profesores" EntitySet="Profesores" />
+            <End Role="Grupos" EntitySet="Grupos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Profesore__Rol_I__32AB8735" Association="Self.FK__Profesore__Rol_I__32AB8735">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Profesores" EntitySet="Profesores" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Profesore__Usuar__571DF1D5" Association="Self.FK__Profesore__Usuar__571DF1D5">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Profesores" EntitySet="Profesores" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rectores__Rol_ID__30C33EC3" Association="Self.FK__Rectores__Rol_ID__30C33EC3">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Rectores" EntitySet="Rectores" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rectores__Usuari__2FCF1A8A" Association="Self.FK__Rectores__Usuari__2FCF1A8A">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Rectores" EntitySet="Rectores" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuarios__Rol_ID__4BAC3F29" Association="Self.FK__Usuarios__Rol_ID__4BAC3F29">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EscuelaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admins">
+          <Key>
+            <PropertyRef Name="ID_Admin" />
+          </Key>
+          <Property Name="ID_Admin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Usuario_ID" Type="Int32" />
+          <Property Name="Rol_ID" Type="Int32" />
+          <Property Name="Fecha_Nacimiento" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Admins__Rol_ID__2BFE89A6" FromRole="Admins" ToRole="Usuarios" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Admins__Rol_ID__2CF2ADDF" FromRole="Admins" ToRole="Roles" />
+        </EntityType>
+        <EntityType Name="Alumnos">
+          <Key>
+            <PropertyRef Name="ID_Alumno" />
+          </Key>
+          <Property Name="ID_Alumno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha_Nacimiento" Type="DateTime" Precision="0" />
+          <Property Name="Matricula" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Usuario_ID" Type="Int32" />
+          <Property Name="Rol_ID" Type="Int32" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Alumnos__Rol_ID__31B762FC" FromRole="Alumnos" ToRole="Roles" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Alumnos__Usuario__4E88ABD4" FromRole="Alumnos" ToRole="Usuarios" />
+          <NavigationProperty Name="Alumnos_Grupos" Relationship="Self.FK__Alumnos_G__Alumn__1CBC4616" FromRole="Alumnos" ToRole="Alumnos_Grupos" />
+          <NavigationProperty Name="Calificaciones" Relationship="Self.FK__Calificac__Alumn__7C4F7684" FromRole="Alumnos" ToRole="Calificaciones" />
+        </EntityType>
+        <EntityType Name="Alumnos_Grupos">
+          <Key>
+            <PropertyRef Name="ID_Alumnos_Grupos" />
+          </Key>
+          <Property Name="ID_Alumnos_Grupos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Alumno_ID" Type="Int32" />
+          <Property Name="Grupo_ID" Type="Int32" />
+          <NavigationProperty Name="Alumnos" Relationship="Self.FK__Alumnos_G__Alumn__1CBC4616" FromRole="Alumnos_Grupos" ToRole="Alumnos" />
+          <NavigationProperty Name="Grupos" Relationship="Self.FK__Alumnos_G__Grupo__1DB06A4F" FromRole="Alumnos_Grupos" ToRole="Grupos" />
+        </EntityType>
+        <EntityType Name="Calificaciones">
+          <Key>
+            <PropertyRef Name="ID_Calificacion" />
+          </Key>
+          <Property Name="ID_Calificacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Alumno_ID" Type="Int32" />
+          <Property Name="Materia_ID" Type="Int32" />
+          <Property Name="Calificacion" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Semestre" Type="Int32" />
+          <Property Name="Parcial" Type="Int32" />
+          <NavigationProperty Name="Alumnos" Relationship="Self.FK__Calificac__Alumn__7C4F7684" FromRole="Calificaciones" ToRole="Alumnos" />
+          <NavigationProperty Name="Materias" Relationship="Self.FK__Calificac__Mater__7D439ABD" FromRole="Calificaciones" ToRole="Materias" />
+        </EntityType>
+        <EntityType Name="Grupos">
+          <Key>
+            <PropertyRef Name="ID_Grupo" />
+          </Key>
+          <Property Name="ID_Grupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Profesor_ID" Type="Int32" />
+          <Property Name="Materia_ID" Type="Int32" />
+          <Property Name="Horario_ID" Type="Int32" />
+          <NavigationProperty Name="Alumnos_Grupos" Relationship="Self.FK__Alumnos_G__Grupo__1DB06A4F" FromRole="Grupos" ToRole="Alumnos_Grupos" />
+          <NavigationProperty Name="Horarios" Relationship="Self.FK__Grupos__Horario___17F790F9" FromRole="Grupos" ToRole="Horarios" />
+          <NavigationProperty Name="Materias" Relationship="Self.FK__Grupos__Materia___18EBB532" FromRole="Grupos" ToRole="Materias" />
+          <NavigationProperty Name="Profesores" Relationship="Self.FK__Grupos__Profesor__19DFD96B" FromRole="Grupos" ToRole="Profesores" />
+        </EntityType>
+        <EntityType Name="Horarios">
+          <Key>
+            <PropertyRef Name="ID_Horario" />
+          </Key>
+          <Property Name="ID_Horario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Horario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Grupos" Relationship="Self.FK__Grupos__Horario___17F790F9" FromRole="Horarios" ToRole="Grupos" />
+        </EntityType>
+        <EntityType Name="Materias">
+          <Key>
+            <PropertyRef Name="ID_Materia" />
+          </Key>
+          <Property Name="ID_Materia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Calificaciones" Relationship="Self.FK__Calificac__Mater__7D439ABD" FromRole="Materias" ToRole="Calificaciones" />
+          <NavigationProperty Name="Grupos" Relationship="Self.FK__Grupos__Materia___18EBB532" FromRole="Materias" ToRole="Grupos" />
+        </EntityType>
+        <EntityType Name="Profesores">
+          <Key>
+            <PropertyRef Name="ID_Profesor" />
+          </Key>
+          <Property Name="ID_Profesor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Usuario_ID" Type="Int32" />
+          <Property Name="Fecha_Nacimiento" Type="DateTime" Precision="0" />
+          <Property Name="Rol_ID" Type="Int32" />
+          <NavigationProperty Name="Grupos" Relationship="Self.FK__Grupos__Profesor__19DFD96B" FromRole="Profesores" ToRole="Grupos" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Profesore__Rol_I__32AB8735" FromRole="Profesores" ToRole="Roles" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Profesore__Usuar__571DF1D5" FromRole="Profesores" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Rectores">
+          <Key>
+            <PropertyRef Name="ID_Rector" />
+          </Key>
+          <Property Name="ID_Rector" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Usuario_ID" Type="Int32" />
+          <Property Name="Rol_ID" Type="Int32" />
+          <Property Name="Fecha_Nacimiento" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Rectores__Rol_ID__30C33EC3" FromRole="Rectores" ToRole="Roles" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Rectores__Usuari__2FCF1A8A" FromRole="Rectores" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="ID_Rol" />
+          </Key>
+          <Property Name="ID_Rol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Admins" Relationship="Self.FK__Admins__Rol_ID__2CF2ADDF" FromRole="Roles" ToRole="Admins" />
+          <NavigationProperty Name="Alumnos" Relationship="Self.FK__Alumnos__Rol_ID__31B762FC" FromRole="Roles" ToRole="Alumnos" />
+          <NavigationProperty Name="Profesores" Relationship="Self.FK__Profesore__Rol_I__32AB8735" FromRole="Roles" ToRole="Profesores" />
+          <NavigationProperty Name="Rectores" Relationship="Self.FK__Rectores__Rol_ID__30C33EC3" FromRole="Roles" ToRole="Rectores" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__Rol_ID__4BAC3F29" FromRole="Roles" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="ID_Usuario" />
+          </Key>
+          <Property Name="ID_Usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_Usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Contraseña" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Rol_ID" Type="Int32" />
+          <Property Name="disponibilidad" Type="Boolean" />
+          <NavigationProperty Name="Admins" Relationship="Self.FK__Admins__Rol_ID__2BFE89A6" FromRole="Usuarios" ToRole="Admins" />
+          <NavigationProperty Name="Alumnos" Relationship="Self.FK__Alumnos__Usuario__4E88ABD4" FromRole="Usuarios" ToRole="Alumnos" />
+          <NavigationProperty Name="Profesores" Relationship="Self.FK__Profesore__Usuar__571DF1D5" FromRole="Usuarios" ToRole="Profesores" />
+          <NavigationProperty Name="Rectores" Relationship="Self.FK__Rectores__Usuari__2FCF1A8A" FromRole="Usuarios" ToRole="Rectores" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__Rol_ID__4BAC3F29" FromRole="Usuarios" ToRole="Roles" />
+        </EntityType>
+        <EntityType Name="mostrarUsuarios">
+          <Key>
+            <PropertyRef Name="ID_Usuario" />
+          </Key>
+          <Property Name="ID_Usuario" Type="Int32" Nullable="false" />
+          <Property Name="Nombre_Usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Rol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="disponibilidad" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="view_AlumnosGrupos">
+          <Key>
+            <PropertyRef Name="C_" />
+            <PropertyRef Name="ID_Alumno" />
+            <PropertyRef Name="ID_Profesor" />
+          </Key>
+          <Property Name="C_" Type="Int32" Nullable="false" />
+          <Property Name="Grupo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ID_Alumno" Type="Int32" Nullable="false" />
+          <Property Name="Nombre_Alumno" Type="String" MaxLength="201" FixedLength="false" Unicode="false" />
+          <Property Name="ID_Profesor" Type="Int32" Nullable="false" />
+          <Property Name="Nombre_Profesor" Type="String" MaxLength="201" FixedLength="false" Unicode="false" />
+          <Property Name="Materia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Horario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK__Admins__Rol_ID__2BFE89A6">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Admins" Type="Self.Admins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="ID_Usuario" />
+            </Principal>
+            <Dependent Role="Admins">
+              <PropertyRef Name="Usuario_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Admins__Rol_ID__2CF2ADDF">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Admins" Type="Self.Admins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_Rol" />
+            </Principal>
+            <Dependent Role="Admins">
+              <PropertyRef Name="Rol_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Alumnos__Rol_ID__31B762FC">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_Rol" />
+            </Principal>
+            <Dependent Role="Alumnos">
+              <PropertyRef Name="Rol_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Alumnos__Usuario__4E88ABD4">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="ID_Usuario" />
+            </Principal>
+            <Dependent Role="Alumnos">
+              <PropertyRef Name="Usuario_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Alumnos_G__Alumn__1CBC4616">
+          <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="0..1" />
+          <End Role="Alumnos_Grupos" Type="Self.Alumnos_Grupos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alumnos">
+              <PropertyRef Name="ID_Alumno" />
+            </Principal>
+            <Dependent Role="Alumnos_Grupos">
+              <PropertyRef Name="Alumno_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Calificac__Alumn__7C4F7684">
+          <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="0..1" />
+          <End Role="Calificaciones" Type="Self.Calificaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alumnos">
+              <PropertyRef Name="ID_Alumno" />
+            </Principal>
+            <Dependent Role="Calificaciones">
+              <PropertyRef Name="Alumno_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Alumnos_G__Grupo__1DB06A4F">
+          <End Role="Grupos" Type="Self.Grupos" Multiplicity="0..1" />
+          <End Role="Alumnos_Grupos" Type="Self.Alumnos_Grupos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupos">
+              <PropertyRef Name="ID_Grupo" />
+            </Principal>
+            <Dependent Role="Alumnos_Grupos">
+              <PropertyRef Name="Grupo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Calificac__Mater__7D439ABD">
+          <End Role="Materias" Type="Self.Materias" Multiplicity="0..1" />
+          <End Role="Calificaciones" Type="Self.Calificaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materias">
+              <PropertyRef Name="ID_Materia" />
+            </Principal>
+            <Dependent Role="Calificaciones">
+              <PropertyRef Name="Materia_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Grupos__Horario___17F790F9">
+          <End Role="Horarios" Type="Self.Horarios" Multiplicity="0..1" />
+          <End Role="Grupos" Type="Self.Grupos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Horarios">
+              <PropertyRef Name="ID_Horario" />
+            </Principal>
+            <Dependent Role="Grupos">
+              <PropertyRef Name="Horario_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Grupos__Materia___18EBB532">
+          <End Role="Materias" Type="Self.Materias" Multiplicity="0..1" />
+          <End Role="Grupos" Type="Self.Grupos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materias">
+              <PropertyRef Name="ID_Materia" />
+            </Principal>
+            <Dependent Role="Grupos">
+              <PropertyRef Name="Materia_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Grupos__Profesor__19DFD96B">
+          <End Role="Profesores" Type="Self.Profesores" Multiplicity="0..1" />
+          <End Role="Grupos" Type="Self.Grupos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesores">
+              <PropertyRef Name="ID_Profesor" />
+            </Principal>
+            <Dependent Role="Grupos">
+              <PropertyRef Name="Profesor_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Profesore__Rol_I__32AB8735">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Profesores" Type="Self.Profesores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_Rol" />
+            </Principal>
+            <Dependent Role="Profesores">
+              <PropertyRef Name="Rol_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Profesore__Usuar__571DF1D5">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Profesores" Type="Self.Profesores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="ID_Usuario" />
+            </Principal>
+            <Dependent Role="Profesores">
+              <PropertyRef Name="Usuario_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rectores__Rol_ID__30C33EC3">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Rectores" Type="Self.Rectores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_Rol" />
+            </Principal>
+            <Dependent Role="Rectores">
+              <PropertyRef Name="Rol_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rectores__Usuari__2FCF1A8A">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Rectores" Type="Self.Rectores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="ID_Usuario" />
+            </Principal>
+            <Dependent Role="Rectores">
+              <PropertyRef Name="Usuario_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuarios__Rol_ID__4BAC3F29">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_Rol" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="Rol_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EscuelaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admins" />
+          <EntitySet Name="Alumnos" EntityType="Self.Alumnos" />
+          <EntitySet Name="Alumnos_Grupos" EntityType="Self.Alumnos_Grupos" />
+          <EntitySet Name="Calificaciones" EntityType="Self.Calificaciones" />
+          <EntitySet Name="Grupos" EntityType="Self.Grupos" />
+          <EntitySet Name="Horarios" EntityType="Self.Horarios" />
+          <EntitySet Name="Materias" EntityType="Self.Materias" />
+          <EntitySet Name="Profesores" EntityType="Self.Profesores" />
+          <EntitySet Name="Rectores" EntityType="Self.Rectores" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <EntitySet Name="mostrarUsuarios" EntityType="Self.mostrarUsuarios" />
+          <EntitySet Name="view_AlumnosGrupos" EntityType="Self.view_AlumnosGrupos" />
+          <AssociationSet Name="FK__Admins__Rol_ID__2BFE89A6" Association="Self.FK__Admins__Rol_ID__2BFE89A6">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Admins" EntitySet="Admins" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Admins__Rol_ID__2CF2ADDF" Association="Self.FK__Admins__Rol_ID__2CF2ADDF">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Admins" EntitySet="Admins" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Alumnos__Rol_ID__31B762FC" Association="Self.FK__Alumnos__Rol_ID__31B762FC">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Alumnos" EntitySet="Alumnos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Alumnos__Usuario__4E88ABD4" Association="Self.FK__Alumnos__Usuario__4E88ABD4">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Alumnos" EntitySet="Alumnos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Alumnos_G__Alumn__1CBC4616" Association="Self.FK__Alumnos_G__Alumn__1CBC4616">
+            <End Role="Alumnos" EntitySet="Alumnos" />
+            <End Role="Alumnos_Grupos" EntitySet="Alumnos_Grupos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Calificac__Alumn__7C4F7684" Association="Self.FK__Calificac__Alumn__7C4F7684">
+            <End Role="Alumnos" EntitySet="Alumnos" />
+            <End Role="Calificaciones" EntitySet="Calificaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Alumnos_G__Grupo__1DB06A4F" Association="Self.FK__Alumnos_G__Grupo__1DB06A4F">
+            <End Role="Grupos" EntitySet="Grupos" />
+            <End Role="Alumnos_Grupos" EntitySet="Alumnos_Grupos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Calificac__Mater__7D439ABD" Association="Self.FK__Calificac__Mater__7D439ABD">
+            <End Role="Materias" EntitySet="Materias" />
+            <End Role="Calificaciones" EntitySet="Calificaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Grupos__Horario___17F790F9" Association="Self.FK__Grupos__Horario___17F790F9">
+            <End Role="Horarios" EntitySet="Horarios" />
+            <End Role="Grupos" EntitySet="Grupos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Grupos__Materia___18EBB532" Association="Self.FK__Grupos__Materia___18EBB532">
+            <End Role="Materias" EntitySet="Materias" />
+            <End Role="Grupos" EntitySet="Grupos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Grupos__Profesor__19DFD96B" Association="Self.FK__Grupos__Profesor__19DFD96B">
+            <End Role="Profesores" EntitySet="Profesores" />
+            <End Role="Grupos" EntitySet="Grupos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Profesore__Rol_I__32AB8735" Association="Self.FK__Profesore__Rol_I__32AB8735">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Profesores" EntitySet="Profesores" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Profesore__Usuar__571DF1D5" Association="Self.FK__Profesore__Usuar__571DF1D5">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Profesores" EntitySet="Profesores" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rectores__Rol_ID__30C33EC3" Association="Self.FK__Rectores__Rol_ID__30C33EC3">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Rectores" EntitySet="Rectores" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rectores__Usuari__2FCF1A8A" Association="Self.FK__Rectores__Usuari__2FCF1A8A">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Rectores" EntitySet="Rectores" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuarios__Rol_ID__4BAC3F29" Association="Self.FK__Usuarios__Rol_ID__4BAC3F29">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <FunctionImport Name="mostrarGrupos" />
+          <FunctionImport Name="sp_Admin_sel" ReturnType="Collection(EscuelaModel.sp_Admin_sel_Result)">
+            <Parameter Name="ID_Admin" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Admins_del">
+            <Parameter Name="ID_Admin" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Admins_update">
+            <Parameter Name="ID_Admin" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellido" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Alumno_sel" ReturnType="Collection(EscuelaModel.sp_Alumno_sel_Result)">
+            <Parameter Name="ID_Alumno" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Alumno_update">
+            <Parameter Name="ID_Alumno" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellido" Mode="In" Type="String" />
+            <Parameter Name="Fecha_Nacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="Matricula" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_AlumnoGrupo_sel" ReturnType="Collection(EscuelaModel.sp_AlumnoGrupo_sel_Result)">
+            <Parameter Name="ID_AlumnosGrupo" Mode="In" Type="Int32" />
+            <Parameter Name="Alumno_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Grupo_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_AlumnosGrupo_update">
+            <Parameter Name="ID_AlumnosGrupo" Mode="In" Type="Int32" />
+            <Parameter Name="Alumno_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Grupo_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_AlumnosGrupos_del">
+            <Parameter Name="ID_AlumnosGrupo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Alumo_del">
+            <Parameter Name="ID_Alumno" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Califiacion_update">
+            <Parameter Name="ID_Califiacion" Mode="In" Type="Int32" />
+            <Parameter Name="Materia_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Alumno_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Calificacion" Mode="In" Type="Decimal" />
+            <Parameter Name="Semestre" Mode="In" Type="Int32" />
+            <Parameter Name="Parcial" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Calificacion_del">
+            <Parameter Name="ID_Calificacion" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Calificacion_sel" ReturnType="Collection(EscuelaModel.sp_Calificacion_sel_Result)">
+            <Parameter Name="ID_Calificacion" Mode="In" Type="Int32" />
+            <Parameter Name="Alumno_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Materia_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Grupo_del">
+            <Parameter Name="ID_Grupo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Grupo_sel" ReturnType="Collection(EscuelaModel.sp_Grupo_sel_Result)">
+            <Parameter Name="ID_Grupo" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Grupo_update">
+            <Parameter Name="ID_Grupo" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Horario_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Materia_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Profesor_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(EscuelaModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(EscuelaModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Horario_del">
+            <Parameter Name="ID_Horario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Horario_sel">
+            <Parameter Name="ID_Horario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Horario_update">
+            <Parameter Name="ID_Horario" Mode="In" Type="Int32" />
+            <Parameter Name="Horario" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InsertarAdmins">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellido" Mode="In" Type="String" />
+            <Parameter Name="Fecha_Nacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="Rol_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InsertarAlumGrupo">
+            <Parameter Name="Alumno_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Grupo_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InsertarAlumno">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellido" Mode="In" Type="String" />
+            <Parameter Name="Fecha_Nacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="Rol_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InsertarCalificacion">
+            <Parameter Name="ALumno_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Materia_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Calificacion" Mode="In" Type="Decimal" />
+            <Parameter Name="Semestre" Mode="In" Type="Int32" />
+            <Parameter Name="Parcial" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InsertarGrupo">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Profesor_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Materia_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Horario_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InsertarHorario">
+            <Parameter Name="Horario" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InsertarMateria">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InsertarProfe">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellido" Mode="In" Type="String" />
+            <Parameter Name="Usuario_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Fecha_Nacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="Rol_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Login" ReturnType="Collection(EscuelaModel.SP_Login_Result)">
+            <Parameter Name="Nombre_Usuario" Mode="In" Type="String" />
+            <Parameter Name="Contraseña" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Materia_del">
+            <Parameter Name="ID_Materia" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Materia_update">
+            <Parameter Name="ID_Materia" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Materias_sel" ReturnType="Collection(EscuelaModel.sp_Materias_sel_Result)">
+            <Parameter Name="ID_Materia" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_MostrarAlumnosGrupos" ReturnType="Collection(EscuelaModel.sp_MostrarAlumnosGrupos_Result)" />
+          <FunctionImport Name="sp_mostrarUsuarios" ReturnType="Collection(EscuelaModel.sp_mostrarUsuarios_Result)" />
+          <FunctionImport Name="sp_Profe_del">
+            <Parameter Name="ID_Profesor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Profe_sel" ReturnType="Collection(EscuelaModel.sp_Profe_sel_Result)">
+            <Parameter Name="ID_Profesor" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Profe_update">
+            <Parameter Name="ID_Profesor" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellido" Mode="In" Type="String" />
+            <Parameter Name="Usuario_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Roles_sel" ReturnType="Collection(EscuelaModel.sp_Roles_sel_Result)" />
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="sp_Usuario_del">
+            <Parameter Name="ID_Usuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Usuario_Insert">
+            <Parameter Name="Nombre_usuario" Mode="In" Type="String" />
+            <Parameter Name="Contraseña" Mode="In" Type="String" />
+            <Parameter Name="Rol_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Usuario_sel" ReturnType="Collection(EscuelaModel.sp_Usuario_sel_Result)">
+            <Parameter Name="ID_Usuario" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre_Usuario" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Usuario_update">
+            <Parameter Name="ID_Usuario" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre_Usuario" Mode="In" Type="String" />
+            <Parameter Name="Contraseña" Mode="In" Type="String" />
+            <Parameter Name="Rol_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_Admin_sel_Result">
+          <Property Type="Int32" Name="ID_Admin" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Apellido" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Usuario_ID" Nullable="true" />
+          <Property Type="Int32" Name="Rol_ID" Nullable="true" />
+          <Property Type="DateTime" Name="Fecha_Nacimiento" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_Alumno_sel_Result">
+          <Property Type="Int32" Name="ID_Alumno" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Apellido" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="Fecha_Nacimiento" Nullable="true" />
+          <Property Type="String" Name="Matricula" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="Usuario_ID" Nullable="true" />
+          <Property Type="Int32" Name="Rol_ID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_AlumnoGrupo_sel_Result">
+          <Property Type="Int32" Name="ID_Alumnos_Grupos" Nullable="false" />
+          <Property Type="Int32" Name="Alumno_ID" Nullable="true" />
+          <Property Type="Int32" Name="Grupo_ID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_Calificacion_sel_Result">
+          <Property Type="Int32" Name="ID_Calificacion" Nullable="false" />
+          <Property Type="Int32" Name="Alumno_ID" Nullable="true" />
+          <Property Type="Int32" Name="Materia_ID" Nullable="true" />
+          <Property Type="Decimal" Name="Calificacion" Nullable="true" Precision="5" Scale="2" />
+          <Property Type="Int32" Name="Semestre" Nullable="true" />
+          <Property Type="Int32" Name="Parcial" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_Grupo_sel_Result">
+          <Property Type="Int32" Name="ID_Grupo" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Profesor_ID" Nullable="true" />
+          <Property Type="Int32" Name="Materia_ID" Nullable="true" />
+          <Property Type="Int32" Name="Horario_ID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_Login_Result">
+          <Property Type="String" Name="Nombre_Usuario" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="contraseña" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_Materias_sel_Result">
+          <Property Type="Int32" Name="ID_Materia" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_MostrarAlumnosGrupos_Result">
+          <Property Type="Int32" Name="C_" Nullable="false" />
+          <Property Type="String" Name="Grupo" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="ID_Alumno" Nullable="false" />
+          <Property Type="String" Name="Nombre_Alumno" Nullable="true" MaxLength="201" />
+          <Property Type="Int32" Name="ID_Profesor" Nullable="false" />
+          <Property Type="String" Name="Nombre_Profesor" Nullable="true" MaxLength="201" />
+          <Property Type="String" Name="Materia" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Horario" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_mostrarUsuarios_Result">
+          <Property Type="Int32" Name="ID_Usuario" Nullable="false" />
+          <Property Type="String" Name="Nombre_Usuario" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Rol" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="disponibilidad" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_Profe_sel_Result">
+          <Property Type="Int32" Name="ID_Profesor" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Apellido" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Usuario_ID" Nullable="true" />
+          <Property Type="DateTime" Name="Fecha_Nacimiento" Nullable="true" />
+          <Property Type="Int32" Name="Rol_ID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_Roles_sel_Result">
+          <Property Type="Int32" Name="ID_Rol" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_Usuario_sel_Result">
+          <Property Type="Int32" Name="ID_Usuario" Nullable="false" />
+          <Property Type="String" Name="Nombre_Usuario" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Contraseña" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Rol_ID" Nullable="true" />
+          <Property Type="Boolean" Name="disponibilidad" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EscuelaModelStoreContainer" CdmEntityContainer="EscuelaEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="EscuelaModel.Admins">
+              <MappingFragment StoreEntitySet="Admins">
+                <ScalarProperty Name="ID_Admin" ColumnName="ID_Admin" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
+                <ScalarProperty Name="Rol_ID" ColumnName="Rol_ID" />
+                <ScalarProperty Name="Fecha_Nacimiento" ColumnName="Fecha_Nacimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Alumnos">
+            <EntityTypeMapping TypeName="EscuelaModel.Alumnos">
+              <MappingFragment StoreEntitySet="Alumnos">
+                <ScalarProperty Name="ID_Alumno" ColumnName="ID_Alumno" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Fecha_Nacimiento" ColumnName="Fecha_Nacimiento" />
+                <ScalarProperty Name="Matricula" ColumnName="Matricula" />
+                <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
+                <ScalarProperty Name="Rol_ID" ColumnName="Rol_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Alumnos_Grupos">
+            <EntityTypeMapping TypeName="EscuelaModel.Alumnos_Grupos">
+              <MappingFragment StoreEntitySet="Alumnos_Grupos">
+                <ScalarProperty Name="ID_Alumnos_Grupos" ColumnName="ID_Alumnos_Grupos" />
+                <ScalarProperty Name="Alumno_ID" ColumnName="Alumno_ID" />
+                <ScalarProperty Name="Grupo_ID" ColumnName="Grupo_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Calificaciones">
+            <EntityTypeMapping TypeName="EscuelaModel.Calificaciones">
+              <MappingFragment StoreEntitySet="Calificaciones">
+                <ScalarProperty Name="ID_Calificacion" ColumnName="ID_Calificacion" />
+                <ScalarProperty Name="Alumno_ID" ColumnName="Alumno_ID" />
+                <ScalarProperty Name="Materia_ID" ColumnName="Materia_ID" />
+                <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
+                <ScalarProperty Name="Semestre" ColumnName="Semestre" />
+                <ScalarProperty Name="Parcial" ColumnName="Parcial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grupos">
+            <EntityTypeMapping TypeName="EscuelaModel.Grupos">
+              <MappingFragment StoreEntitySet="Grupos">
+                <ScalarProperty Name="ID_Grupo" ColumnName="ID_Grupo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Profesor_ID" ColumnName="Profesor_ID" />
+                <ScalarProperty Name="Materia_ID" ColumnName="Materia_ID" />
+                <ScalarProperty Name="Horario_ID" ColumnName="Horario_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Horarios">
+            <EntityTypeMapping TypeName="EscuelaModel.Horarios">
+              <MappingFragment StoreEntitySet="Horarios">
+                <ScalarProperty Name="ID_Horario" ColumnName="ID_Horario" />
+                <ScalarProperty Name="Horario" ColumnName="Horario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Materias">
+            <EntityTypeMapping TypeName="EscuelaModel.Materias">
+              <MappingFragment StoreEntitySet="Materias">
+                <ScalarProperty Name="ID_Materia" ColumnName="ID_Materia" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profesores">
+            <EntityTypeMapping TypeName="EscuelaModel.Profesores">
+              <MappingFragment StoreEntitySet="Profesores">
+                <ScalarProperty Name="ID_Profesor" ColumnName="ID_Profesor" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
+                <ScalarProperty Name="Fecha_Nacimiento" ColumnName="Fecha_Nacimiento" />
+                <ScalarProperty Name="Rol_ID" ColumnName="Rol_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rectores">
+            <EntityTypeMapping TypeName="EscuelaModel.Rectores">
+              <MappingFragment StoreEntitySet="Rectores">
+                <ScalarProperty Name="ID_Rector" ColumnName="ID_Rector" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
+                <ScalarProperty Name="Rol_ID" ColumnName="Rol_ID" />
+                <ScalarProperty Name="Fecha_Nacimiento" ColumnName="Fecha_Nacimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="EscuelaModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="ID_Rol" ColumnName="ID_Rol" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="EscuelaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="EscuelaModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
+                <ScalarProperty Name="Nombre_Usuario" ColumnName="Nombre_Usuario" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Rol_ID" ColumnName="Rol_ID" />
+                <ScalarProperty Name="disponibilidad" ColumnName="disponibilidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mostrarUsuarios">
+            <EntityTypeMapping TypeName="EscuelaModel.mostrarUsuarios">
+              <MappingFragment StoreEntitySet="mostrarUsuarios">
+                <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
+                <ScalarProperty Name="Nombre_Usuario" ColumnName="Nombre_Usuario" />
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
+                <ScalarProperty Name="disponibilidad" ColumnName="disponibilidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_AlumnosGrupos">
+            <EntityTypeMapping TypeName="EscuelaModel.view_AlumnosGrupos">
+              <MappingFragment StoreEntitySet="view_AlumnosGrupos">
+                <ScalarProperty Name="C_" ColumnName="#" />
+                <ScalarProperty Name="Grupo" ColumnName="Grupo" />
+                <ScalarProperty Name="ID_Alumno" ColumnName="ID_Alumno" />
+                <ScalarProperty Name="Nombre_Alumno" ColumnName="Nombre_Alumno" />
+                <ScalarProperty Name="ID_Profesor" ColumnName="ID_Profesor" />
+                <ScalarProperty Name="Nombre_Profesor" ColumnName="Nombre_Profesor" />
+                <ScalarProperty Name="Materia" ColumnName="Materia" />
+                <ScalarProperty Name="Horario" ColumnName="Horario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="mostrarGrupos" FunctionName="EscuelaModel.Store.mostrarGrupos" />
+          <FunctionImportMapping FunctionImportName="sp_Admin_sel" FunctionName="EscuelaModel.Store.sp_Admin_sel">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EscuelaModel.sp_Admin_sel_Result">
+                <ScalarProperty Name="ID_Admin" ColumnName="ID_Admin" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
+                <ScalarProperty Name="Rol_ID" ColumnName="Rol_ID" />
+                <ScalarProperty Name="Fecha_Nacimiento" ColumnName="Fecha_Nacimiento" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Admins_del" FunctionName="EscuelaModel.Store.sp_Admins_del" />
+          <FunctionImportMapping FunctionImportName="sp_Admins_update" FunctionName="EscuelaModel.Store.sp_Admins_update" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="EscuelaModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_Alumno_sel" FunctionName="EscuelaModel.Store.sp_Alumno_sel">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EscuelaModel.sp_Alumno_sel_Result">
+                <ScalarProperty Name="ID_Alumno" ColumnName="ID_Alumno" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Fecha_Nacimiento" ColumnName="Fecha_Nacimiento" />
+                <ScalarProperty Name="Matricula" ColumnName="Matricula" />
+                <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
+                <ScalarProperty Name="Rol_ID" ColumnName="Rol_ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Alumno_update" FunctionName="EscuelaModel.Store.sp_Alumno_update" />
+          <FunctionImportMapping FunctionImportName="sp_AlumnoGrupo_sel" FunctionName="EscuelaModel.Store.sp_AlumnoGrupo_sel">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EscuelaModel.sp_AlumnoGrupo_sel_Result">
+                <ScalarProperty Name="ID_Alumnos_Grupos" ColumnName="ID_Alumnos_Grupos" />
+                <ScalarProperty Name="Alumno_ID" ColumnName="Alumno_ID" />
+                <ScalarProperty Name="Grupo_ID" ColumnName="Grupo_ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_AlumnosGrupo_update" FunctionName="EscuelaModel.Store.sp_AlumnosGrupo_update" />
+          <FunctionImportMapping FunctionImportName="sp_AlumnosGrupos_del" FunctionName="EscuelaModel.Store.sp_AlumnosGrupos_del" />
+          <FunctionImportMapping FunctionImportName="sp_Alumo_del" FunctionName="EscuelaModel.Store.sp_Alumo_del" />
+          <FunctionImportMapping FunctionImportName="sp_Califiacion_update" FunctionName="EscuelaModel.Store.sp_Califiacion_update" />
+          <FunctionImportMapping FunctionImportName="sp_Calificacion_del" FunctionName="EscuelaModel.Store.sp_Calificacion_del" />
+          <FunctionImportMapping FunctionImportName="sp_Calificacion_sel" FunctionName="EscuelaModel.Store.sp_Calificacion_sel">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EscuelaModel.sp_Calificacion_sel_Result">
+                <ScalarProperty Name="ID_Calificacion" ColumnName="ID_Calificacion" />
+                <ScalarProperty Name="Alumno_ID" ColumnName="Alumno_ID" />
+                <ScalarProperty Name="Materia_ID" ColumnName="Materia_ID" />
+                <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
+                <ScalarProperty Name="Semestre" ColumnName="Semestre" />
+                <ScalarProperty Name="Parcial" ColumnName="Parcial" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="EscuelaModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="EscuelaModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_Grupo_del" FunctionName="EscuelaModel.Store.sp_Grupo_del" />
+          <FunctionImportMapping FunctionImportName="sp_Grupo_sel" FunctionName="EscuelaModel.Store.sp_Grupo_sel">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EscuelaModel.sp_Grupo_sel_Result">
+                <ScalarProperty Name="ID_Grupo" ColumnName="ID_Grupo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Profesor_ID" ColumnName="Profesor_ID" />
+                <ScalarProperty Name="Materia_ID" ColumnName="Materia_ID" />
+                <ScalarProperty Name="Horario_ID" ColumnName="Horario_ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Grupo_update" FunctionName="EscuelaModel.Store.sp_Grupo_update" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="EscuelaModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EscuelaModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="EscuelaModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EscuelaModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Horario_del" FunctionName="EscuelaModel.Store.sp_Horario_del" />
+          <FunctionImportMapping FunctionImportName="sp_Horario_sel" FunctionName="EscuelaModel.Store.sp_Horario_sel" />
+          <FunctionImportMapping FunctionImportName="sp_Horario_update" FunctionName="EscuelaModel.Store.sp_Horario_update" />
+          <FunctionImportMapping FunctionImportName="sp_InsertarAdmins" FunctionName="EscuelaModel.Store.sp_InsertarAdmins" />
+          <FunctionImportMapping FunctionImportName="sp_InsertarAlumGrupo" FunctionName="EscuelaModel.Store.sp_InsertarAlumGrupo" />
+          <FunctionImportMapping FunctionImportName="sp_InsertarAlumno" FunctionName="EscuelaModel.Store.sp_InsertarAlumno" />
+          <FunctionImportMapping FunctionImportName="sp_InsertarCalificacion" FunctionName="EscuelaModel.Store.sp_InsertarCalificacion" />
+          <FunctionImportMapping FunctionImportName="sp_InsertarGrupo" FunctionName="EscuelaModel.Store.sp_InsertarGrupo" />
+          <FunctionImportMapping FunctionImportName="sp_InsertarHorario" FunctionName="EscuelaModel.Store.sp_InsertarHorario" />
+          <FunctionImportMapping FunctionImportName="sp_InsertarMateria" FunctionName="EscuelaModel.Store.sp_InsertarMateria" />
+          <FunctionImportMapping FunctionImportName="sp_InsertarProfe" FunctionName="EscuelaModel.Store.sp_InsertarProfe" />
+          <FunctionImportMapping FunctionImportName="SP_Login" FunctionName="EscuelaModel.Store.SP_Login">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EscuelaModel.SP_Login_Result">
+                <ScalarProperty Name="Nombre_Usuario" ColumnName="Nombre_Usuario" />
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Materia_del" FunctionName="EscuelaModel.Store.sp_Materia_del" />
+          <FunctionImportMapping FunctionImportName="sp_Materia_update" FunctionName="EscuelaModel.Store.sp_Materia_update" />
+          <FunctionImportMapping FunctionImportName="sp_Materias_sel" FunctionName="EscuelaModel.Store.sp_Materias_sel">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EscuelaModel.sp_Materias_sel_Result">
+                <ScalarProperty Name="ID_Materia" ColumnName="ID_Materia" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_MostrarAlumnosGrupos" FunctionName="EscuelaModel.Store.sp_MostrarAlumnosGrupos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EscuelaModel.sp_MostrarAlumnosGrupos_Result">
+                <ScalarProperty Name="C_" ColumnName="#" />
+                <ScalarProperty Name="Grupo" ColumnName="Grupo" />
+                <ScalarProperty Name="ID_Alumno" ColumnName="ID_Alumno" />
+                <ScalarProperty Name="Nombre_Alumno" ColumnName="Nombre_Alumno" />
+                <ScalarProperty Name="ID_Profesor" ColumnName="ID_Profesor" />
+                <ScalarProperty Name="Nombre_Profesor" ColumnName="Nombre_Profesor" />
+                <ScalarProperty Name="Materia" ColumnName="Materia" />
+                <ScalarProperty Name="Horario" ColumnName="Horario" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_mostrarUsuarios" FunctionName="EscuelaModel.Store.sp_mostrarUsuarios">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EscuelaModel.sp_mostrarUsuarios_Result">
+                <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
+                <ScalarProperty Name="Nombre_Usuario" ColumnName="Nombre_Usuario" />
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
+                <ScalarProperty Name="disponibilidad" ColumnName="disponibilidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Profe_del" FunctionName="EscuelaModel.Store.sp_Profe_del" />
+          <FunctionImportMapping FunctionImportName="sp_Profe_sel" FunctionName="EscuelaModel.Store.sp_Profe_sel">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EscuelaModel.sp_Profe_sel_Result">
+                <ScalarProperty Name="ID_Profesor" ColumnName="ID_Profesor" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
+                <ScalarProperty Name="Fecha_Nacimiento" ColumnName="Fecha_Nacimiento" />
+                <ScalarProperty Name="Rol_ID" ColumnName="Rol_ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Profe_update" FunctionName="EscuelaModel.Store.sp_Profe_update" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="EscuelaModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_Roles_sel" FunctionName="EscuelaModel.Store.sp_Roles_sel">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EscuelaModel.sp_Roles_sel_Result">
+                <ScalarProperty Name="ID_Rol" ColumnName="ID_Rol" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="EscuelaModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_Usuario_del" FunctionName="EscuelaModel.Store.sp_Usuario_del" />
+          <FunctionImportMapping FunctionImportName="sp_Usuario_Insert" FunctionName="EscuelaModel.Store.sp_Usuario_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_Usuario_sel" FunctionName="EscuelaModel.Store.sp_Usuario_sel">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EscuelaModel.sp_Usuario_sel_Result">
+                <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
+                <ScalarProperty Name="Nombre_Usuario" ColumnName="Nombre_Usuario" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Rol_ID" ColumnName="Rol_ID" />
+                <ScalarProperty Name="disponibilidad" ColumnName="disponibilidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Usuario_update" FunctionName="EscuelaModel.Store.sp_Usuario_update" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

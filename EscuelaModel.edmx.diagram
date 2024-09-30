@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5864c2d19cb044899d6548da679c592d" Name="Diagram1">
+        <EntityTypeShape EntityType="EscuelaModel.Admins" Width="1.5" PointX="5.25" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EscuelaModel.Alumnos" Width="1.5" PointX="8.25" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EscuelaModel.Alumnos_Grupos" Width="1.5" PointX="10.5" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EscuelaModel.Calificaciones" Width="1.5" PointX="10.5" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EscuelaModel.Grupos" Width="1.5" PointX="7.5" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EscuelaModel.Horarios" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EscuelaModel.Materias" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EscuelaModel.Profesores" Width="1.5" PointX="5.25" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EscuelaModel.Rectores" Width="1.5" PointX="5.25" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EscuelaModel.Roles" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EscuelaModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EscuelaModel.Usuarios" Width="1.5" PointX="3" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EscuelaModel.mostrarUsuarios" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EscuelaModel.view_AlumnosGrupos" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="EscuelaModel.FK__Admins__Rol_ID__2BFE89A6" ManuallyRouted="false" />
+        <AssociationConnector Association="EscuelaModel.FK__Admins__Rol_ID__2CF2ADDF" ManuallyRouted="false" />
+        <AssociationConnector Association="EscuelaModel.FK__Alumnos__Rol_ID__31B762FC" ManuallyRouted="false" />
+        <AssociationConnector Association="EscuelaModel.FK__Alumnos__Usuario__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="EscuelaModel.FK__Alumnos_G__Alumn__1CBC4616" ManuallyRouted="false" />
+        <AssociationConnector Association="EscuelaModel.FK__Calificac__Alumn__7C4F7684" ManuallyRouted="false" />
+        <AssociationConnector Association="EscuelaModel.FK__Alumnos_G__Grupo__1DB06A4F" ManuallyRouted="false" />
+        <AssociationConnector Association="EscuelaModel.FK__Calificac__Mater__7D439ABD" ManuallyRouted="false" />
+        <AssociationConnector Association="EscuelaModel.FK__Grupos__Horario___17F790F9" ManuallyRouted="false" />
+        <AssociationConnector Association="EscuelaModel.FK__Grupos__Materia___18EBB532" ManuallyRouted="false" />
+        <AssociationConnector Association="EscuelaModel.FK__Grupos__Profesor__19DFD96B" ManuallyRouted="false" />
+        <AssociationConnector Association="EscuelaModel.FK__Profesore__Rol_I__32AB8735" ManuallyRouted="false" />
+        <AssociationConnector Association="EscuelaModel.FK__Profesore__Usuar__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="EscuelaModel.FK__Rectores__Rol_ID__30C33EC3" ManuallyRouted="false" />
+        <AssociationConnector Association="EscuelaModel.FK__Rectores__Usuari__2FCF1A8A" ManuallyRouted="false" />
+        <AssociationConnector Association="EscuelaModel.FK__Usuarios__Rol_ID__4BAC3F29" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
